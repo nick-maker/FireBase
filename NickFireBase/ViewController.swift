@@ -1,0 +1,19 @@
+//
+//  ViewController.swift
+//  NickFireBase
+//
+//  Created by Nick Liu on 2023/5/22.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+
+
+}
+
