@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cFx-2T-1TJ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="YrJ-CT-igU">
+            <objects>
+                <tabBarController id="cFx-2T-1TJ" customClass="TabBarController" customModule="NickFireBase" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tbi-LH-bkp">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="AccentColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="S9t-MA-fV5"/>
+                        <segue destination="Kb0-oR-vlx" kind="relationship" relationship="viewControllers" id="zxN-Mg-Ihr"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3hH-El-VUl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1494" y="-221"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -17,84 +38,138 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKq-Xa-06d">
-                                <rect key="frame" x="152" y="475" width="80" height="35"/>
+                                <rect key="frame" x="156" y="635" width="80" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Publish"/>
                                 <connections>
                                     <action selector="publishAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yyd-29-2D1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bt5-cJ-N0e">
-                                <rect key="frame" x="142" y="409" width="100" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Gossiping"/>
-                                <connections>
-                                    <action selector="tagTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QX2-RT-rpN"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuG-fF-c2b">
-                                <rect key="frame" x="242" y="409" width="109" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="School Life"/>
-                                <connections>
-                                    <action selector="tagTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eIj-nz-VNY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ir-0i-ghc">
-                                <rect key="frame" x="56" y="409" width="78" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Beauty"/>
-                                <connections>
-                                    <action selector="tagTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gQE-0A-God"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="9bG-FS-s0a">
+                                <rect key="frame" x="23" y="555" width="339" height="34.333333333333371"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ir-0i-ghc">
+                                        <rect key="frame" x="0.0" y="0.0" width="108.33333333333333" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Beauty"/>
+                                        <connections>
+                                            <action selector="tagTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gQE-0A-God"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bt5-cJ-N0e">
+                                        <rect key="frame" x="115.33333333333334" y="0.0" width="108.33333333333334" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Gossiping"/>
+                                        <connections>
+                                            <action selector="tagTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QX2-RT-rpN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuG-fF-c2b">
+                                        <rect key="frame" x="230.66666666666666" y="0.0" width="108.33333333333334" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="School Life"/>
+                                        <connections>
+                                            <action selector="tagTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eIj-nz-VNY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-ci-G5b">
-                                <rect key="frame" x="71" y="272" width="250" height="34"/>
+                                <rect key="frame" x="71" y="386" width="250" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Content" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kj2-vf-D8k">
-                                <rect key="frame" x="71" y="336" width="250" height="34"/>
+                                <rect key="frame" x="67" y="468" width="250" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Friends" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ROp-ae-HIl">
+                                <rect key="frame" x="71" y="289" width="250" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0X-N9-jyc">
+                                <rect key="frame" x="226" y="331" width="107" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add Friend"/>
+                                <connections>
+                                    <action selector="addButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hip-2K-0hF"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHb-by-djd">
+                                <rect key="frame" x="71" y="341" width="154" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="uuG-fF-c2b" firstAttribute="top" secondItem="kj2-vf-D8k" secondAttribute="bottom" constant="39" id="1aY-7B-6vR"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oKq-Xa-06d" secondAttribute="bottom" constant="308" id="32R-Ww-ech"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fPU-ci-G5b" secondAttribute="trailing" constant="72" id="AAa-FA-Jag"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kj2-vf-D8k" secondAttribute="trailing" constant="72" id="Ast-YC-cTa"/>
-                            <constraint firstItem="5ir-0i-ghc" firstAttribute="top" secondItem="kj2-vf-D8k" secondAttribute="bottom" constant="39" id="Def-fu-YUr"/>
-                            <constraint firstItem="fPU-ci-G5b" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="213" id="FCa-m2-Rh3"/>
-                            <constraint firstItem="bt5-cJ-N0e" firstAttribute="leading" secondItem="5ir-0i-ghc" secondAttribute="trailing" constant="8" symbolic="YES" id="GKh-QW-PHo"/>
-                            <constraint firstItem="bt5-cJ-N0e" firstAttribute="top" secondItem="kj2-vf-D8k" secondAttribute="bottom" constant="39" id="GiD-dt-mrX"/>
-                            <constraint firstItem="kj2-vf-D8k" firstAttribute="top" secondItem="fPU-ci-G5b" secondAttribute="bottom" constant="30" id="LBA-qZ-Def"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oKq-Xa-06d" secondAttribute="trailing" constant="161" id="Mik-4U-rhd"/>
-                            <constraint firstItem="oKq-Xa-06d" firstAttribute="top" secondItem="bt5-cJ-N0e" secondAttribute="bottom" constant="31" id="Oma-Pj-qNf"/>
-                            <constraint firstItem="5ir-0i-ghc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="56" id="Uqr-fU-10c"/>
-                            <constraint firstItem="fPU-ci-G5b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="71" id="fOB-tc-ENQ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uuG-fF-c2b" secondAttribute="trailing" constant="42" id="hGk-y4-GkX"/>
-                            <constraint firstItem="kj2-vf-D8k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="71" id="ktK-YX-gc1"/>
-                            <constraint firstItem="oKq-Xa-06d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="152" id="vjA-sg-2Nw"/>
+                            <constraint firstItem="ROp-ae-HIl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="71" id="1Yz-6j-Naw"/>
+                            <constraint firstItem="ROp-ae-HIl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="230" id="EJL-gS-LCO"/>
+                            <constraint firstItem="9bG-FS-s0a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="23" id="Ieb-qY-xYH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ROp-ae-HIl" secondAttribute="trailing" constant="72" id="KiQ-hY-wIn"/>
+                            <constraint firstItem="fPU-ci-G5b" firstAttribute="top" secondItem="ROp-ae-HIl" secondAttribute="bottom" constant="63" id="NCS-OY-6cA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oKq-Xa-06d" secondAttribute="trailing" constant="157" id="QWF-Yb-dAi"/>
+                            <constraint firstItem="fPU-ci-G5b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="71" id="RIf-LM-E1g"/>
+                            <constraint firstItem="oKq-Xa-06d" firstAttribute="top" secondItem="9bG-FS-s0a" secondAttribute="bottom" constant="45.670000000000002" id="S34-hE-Oob"/>
+                            <constraint firstItem="9bG-FS-s0a" firstAttribute="top" secondItem="kj2-vf-D8k" secondAttribute="bottom" constant="53" id="SkU-VK-jWP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9bG-FS-s0a" secondAttribute="trailing" constant="31" id="ZDk-JS-8Vt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fPU-ci-G5b" secondAttribute="trailing" constant="72" id="fXU-MU-pAk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kj2-vf-D8k" secondAttribute="trailing" constant="76" id="iij-SZ-qKQ"/>
+                            <constraint firstItem="kj2-vf-D8k" firstAttribute="top" secondItem="fPU-ci-G5b" secondAttribute="bottom" constant="48" id="nFC-O6-SjQ"/>
+                            <constraint firstItem="kj2-vf-D8k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" id="nhC-hh-tfq"/>
+                            <constraint firstItem="oKq-Xa-06d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="156" id="nv4-r7-01c"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="SXX-7P-9bd"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="beautyButton" destination="5ir-0i-ghc" id="X6F-Cf-wtc"/>
                         <outlet property="contentField" destination="kj2-vf-D8k" id="aDl-o9-Ohv"/>
+                        <outlet property="friendButton" destination="e0X-N9-jyc" id="wst-nf-znj"/>
                         <outlet property="gossipButton" destination="bt5-cJ-N0e" id="pMb-d3-qXw"/>
+                        <outlet property="nameLabel" destination="DHb-by-djd" id="Pm6-u0-mhS"/>
                         <outlet property="publishButton" destination="oKq-Xa-06d" id="DK9-fG-VNK"/>
                         <outlet property="schoolLife" destination="uuG-fF-c2b" id="jML-0s-gFg"/>
+                        <outlet property="searchTextField" destination="ROp-ae-HIl" id="bEM-MY-QHe"/>
                         <outlet property="titleTextField" destination="fPU-ci-G5b" id="EB0-Tj-GKF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20.610687022900763" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="-466.41221374045801" y="-546.47887323943667"/>
+        </scene>
+        <!--Friend View Controller-->
+        <scene sceneID="zCV-q2-hdK">
+            <objects>
+                <viewController id="Kb0-oR-vlx" customClass="FriendViewController" customModule="NickFireBase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k4A-mV-pNA">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ef6-qO-h5r"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="zUI-sB-WEj">
+                        <imageReference key="selectedImage" image="person.crop.circle.fill" catalog="system" renderingMode="template"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="Xys-Ki-oPH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rTd-X3-a4v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-466" y="129"/>
         </scene>
     </scenes>
     <resources>
+        <image name="person.crop.circle.fill" catalog="system" width="32" height="32"/>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
