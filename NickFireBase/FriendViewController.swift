@@ -11,10 +11,7 @@ import FirebaseFirestore
 
 class FriendViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FirestoreDataUpdateDelegate {
     
-    static let shared = FriendViewController()
-    
     lazy var tableView: UITableView = {
-        //style set to .grouped can let header move along
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.rowHeight = UITableView.automaticDimension
@@ -41,8 +38,6 @@ class FriendViewController: UIViewController, UITableViewDelegate, UITableViewDa
         )
         
         tableView.register(FriendCell.self, forCellReuseIdentifier: FriendCell.reuseIdentifier)
-//        tableView.register(FriendHeaderView.self, forHeaderFooterViewReuseIdentifier: FriendHeaderView.reuseIdentifier)
-        
         if let tabBarController = self.tabBarController as? TabBarController {
             tabBarController.firestoreDataUpdateDelegate = self
         }
@@ -66,7 +61,7 @@ class FriendViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let documentID = TabBarController.shared.waitingData[indexPath.row]
         
-        db.collection("users").document("hybrida666@gmail.com").collection("waiting_lists").document(documentID).delete { err in
+        db.collection("users").document(User.email).collection("waiting_lists").document(documentID).delete { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
@@ -82,11 +77,11 @@ class FriendViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         
-        db.collection("users").document("hybrida666@gmail.com").collection("friends").document(documentID).setData([
+        db.collection("users").document(User.email).collection("friends").document(documentID).setData([
             "email": documentID])
         
-        db.collection("users").document(documentID).collection("friends").document("hybrida666@gmail.com").setData([
-            "email": "hybrida666@gmail.com"])
+        db.collection("users").document(documentID).collection("friends").document(User.email).setData([
+            "email": User.email])
     }
     
     @objc func declineFriend(sender: UIButton) {
@@ -97,7 +92,7 @@ class FriendViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let documentID = TabBarController.shared.waitingData[indexPath.row] // Get the document ID based on the row index
         
-        db.collection("users").document("hybrida666@gmail.com").collection("waiting_lists").document(documentID).delete { err in
+        db.collection("users").document(User.email).collection("waiting_lists").document(documentID).delete { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
@@ -108,9 +103,9 @@ class FriendViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Invitations"
+            return "\(TabBarController.shared.waitingData.count)  Invitations"
         } else {
-            return "Friends"
+            return "\(TabBarController.shared.friendData.count)  Friends"
         }
     }
     

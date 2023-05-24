@@ -9,7 +9,7 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class LandingViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -71,10 +71,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         searchTextField.delegate = self
         nameLabel.isHidden = true
         friendButton.isEnabled = false
+        searchTextField.clearButtonMode = .always
+        
     }
     
     @IBAction func addButton(_ sender: UIButton) {
         addFriend()
+        nameLabel.text = ""
+        searchTextField.text = ""
+        friendButton.isEnabled = false
+        
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        nameLabel.text = ""
+        friendButton.isEnabled = false
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -108,7 +120,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkUser() {
-        guard targetEmail != email else {
+        guard targetEmail != User.email else {
             print("cannot add yourself as friend")
             return }
         let target = db.collection("users").document(targetEmail!)
@@ -118,16 +130,62 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.nameLabel.isHidden = false
                 self.nameLabel.text = document["name"] as? String
             } else {
+                self.nameLabel.isHidden = false
+                self.nameLabel.text = "User does not exist"
                 print("Document does not exist")
             }
         }
     }
     
     func addUser() {
-        db.collection("users").document(email).setData([
-            "id": "hybrida666",
-            "email": email,
-            "name": "Nick"
+        db.collection("users").document(User.email).setData([
+            "id": User.id,
+            "email": User.email,
+            "name": User.name
+        ]){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        db.collection("users").document("joe@gmail.com").setData([
+            "id": "joe",
+            "email": "joe@gmail.com",
+            "name": "Joe"
+        ]){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        db.collection("users").document("jessica@gmail.com").setData([
+            "id": "jessica",
+            "email": "jessica@gmail.com",
+            "name": "Jessica"
+        ]){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        db.collection("users").document("julian@gmail.com").setData([
+            "id": "julian",
+            "email": "julian@gmail.com",
+            "name": "Julian"
+        ]){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        db.collection("users").document("vivian@gmail.com").setData([
+            "id": "vivian",
+            "email": "vivian@gmail.com",
+            "name": "Vivian"
         ]){ err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -145,25 +203,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print("Document does not exist")
                 return
             }
-            guard let self = self else {
+            guard self != nil else {
                 return
             }
+            let targetWaitingCollection = target.collection("waiting_lists")
             let targetFriendsCollection = target.collection("friends")
-            
-            targetFriendsCollection.document(self.email).getDocument { (friendDocument, friendError) in
+            targetWaitingCollection.document(User.email).getDocument { (friendDocument, friendError) in
                 guard let friendDocument = friendDocument, !friendDocument.exists else {
-                    print("Already friends") // Already friends, handle accordingly
+                    print("Request sent already")
                     return
                 }
-                
-                let targetWaitingListsCollection = target.collection("waiting_lists")
-                targetWaitingListsCollection.document(self.email).setData([
-                    "email": self.email
-                ]) { error in
-                    if let error = error {
-                        print("Error adding to waiting list: \(error)")
-                    } else {
-                        print("Added to waiting list successfully")
+                targetFriendsCollection.document(User.email).getDocument { (friendDocument, friendError) in
+                    guard let friendDocument = friendDocument, !friendDocument.exists else {
+                        print("Already friends") // Already friends, handle accordingly
+                        return
+                    }
+                    targetWaitingCollection.document(User.email).setData([
+                        "email": User.email
+                    ]) { error in
+                        if let error = error {
+                            print("Error adding to waiting list: \(error)")
+                        } else {
+                            print("Added to waiting list successfully")
+                        }
                     }
                 }
             }

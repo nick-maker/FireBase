@@ -26,7 +26,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func listenFriendRequest() {
-        db.collection("users").document("hybrida666@gmail.com").collection("waiting_lists").addSnapshotListener { querySnapshot, error in
+        db.collection("users").document(User.email).collection("waiting_lists").addSnapshotListener { querySnapshot, error in
             guard let documents = querySnapshot?.documents else {
                 print("Error fetching document: \(error!)")
                 return
@@ -41,7 +41,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             self.firestoreDataUpdateDelegate?.firestoreDataUpdated()
         }
         
-        db.collection("users").document("hybrida666@gmail.com").collection("friends").addSnapshotListener { querySnapshot, error in
+        db.collection("users").document(User.email).collection("friends").addSnapshotListener { querySnapshot, error in
             guard let documents = querySnapshot?.documents else {
                 print("Error fetching document: \(error!)")
                 return
@@ -55,8 +55,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
     }
     
-    
-    
     func updateBadge() {
         if let tabBarItem = self.tabBar.items?[1] {
             if count > 0 {
@@ -66,7 +64,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             }
         }
     }
-    
 }
 
 protocol FirestoreDataUpdateDelegate: AnyObject {
